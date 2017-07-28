@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>全民K歌房间状态查询系统</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.10.8/umd/popper.min.js" integrity="sha384-DnkRdQ7qQnIyQu3l2I77BVrTus+ZPSPbzkftVyG/w9e7UxGp0S0a72dG5FfBY/G3" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script>
+        function QueryHandler() {
+            var roomId = document.getElementById("roomId").value;
+            if (roomId == '') {
+                alert("请输入歌房ID后重试！");
+                return false;
+            }
+            document.getElementById("ifr_minibox").src="https://api.dingstudio.cn/dingstudio/qktv_room.php?roomId=" + roomId + "&t=" + Math.random();
+            document.getElementById("ifr_contentbox").src="http://kg.qq.com/ktvroom/index.html?roomid=" + roomId + "&t=" + Math.random();
+            document.getElementById("ifr_minibox").style.display="block";
+            document.getElementById("ifr_contentbox").style.display="block";
+            return false;
+        }
+    </script>
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <a href="http://www.dingstudio.cn/#?ref=qmkg-cx" target="_blank">返回小丁工作室官方网站</a>
+    </nav>
+
+    <div class="container">
+
+      <div class="starter-template">
+        <h1>全民K歌房间状态查询系统</h1>
+        <p class="lead">Tencent KTV Room Status Query System</p>
+      </div>
+
+      <form method="get" action="https://api.dingstudio.cn/dingstudio/qktv_room.php" onsubmit="return QueryHandler()">
+          <label for="roomId">歌房ID：</label><input type="text" name="roomId" id="roomId" placeholder="在此键入歌房ID" />
+          <button type="submit" class="btn btn-primary">提交</button>
+      </form>
+
+      <iframe id="ifr_minibox" src="" width="100%" height="300" frameborder="no" border="0" marginwidth="0" marginheight="0" allowtransparency="yes" style="display: none">您的浏览器看起来好像不支持iframe框架技术，请升级您的浏览器或更换支持现代网页技术的浏览器后再试！</iframe>
+
+      <iframe id="ifr_contentbox" src="" width="100%" height="900" frameborder="no" border="0" marginwidth="0" marginheight="0" allowtransparency="yes" style="display: none">您的浏览器看起来好像不支持iframe框架技术，请升级您的浏览器或更换支持现代网页技术的浏览器后再试！</iframe>
+
+      <p>
+          使用帮助：
+          <ul>
+              <li>1、歌房ID如何获取？打开手机全民K歌APP，进入要查询的歌房，选择分享按钮并点击复制链接，然后查找链接中的roomid字段等号后的内容，复制并输入到本页面即可！如：39d9db84232b328d314a71</li>
+              <li>2、程序支持电脑端在线观看么？暂时没有准备做这个功能，但是已经发现了腾讯的直播服务器接口。如果你感兴趣，可以联系我。</li>
+              <li>3、本程序的接口开放调用么？目前开放，接口地址：https://api.dingstudio.cn/dingstudio/qktv_room.php?roomId=xxxxx 后期不排除由于大量请求而开启相关身份验证功能，我会在这里公告。</li>
+              <li>4、程序开源问题：本程序将在稍候在本人的GitHub、Coding和私有Git服务器开放源代码。支持开源奉献精神，从你我做起！欢迎广大开发者进行二次封装。</li>
+              <li>5、作者联系方式：QQ954759397、新浪微博：<a href="http://weibo.com/ddawx123" target="_blank">@ddawx123</a></li>
+          </ul>
+      </p>
+    </div><!-- 网站主体结束 -->
+    <center><iframe id="ifr_stat" src="http://newblog.dingstudio.cn/counter.php" width="100%" height="100" frameborder="no" border="0" marginwidth="0" marginheight="0" allowtransparency="yes"></iframe></center>
+    <!-- 计数器  -->
+</body>
+</html>
